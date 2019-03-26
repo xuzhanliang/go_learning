@@ -30,19 +30,19 @@ func TestCreate(t *testing.T) {
 
 //第一种定义方式在实例对应方法被调用时，实例的成员会进行值复制
 func (e Employee) String1() string {
-	fmt.Printf("Address is %x", unsafe.Pointer(&e.Name))
+	fmt.Printf("Address is %x\n", unsafe.Pointer(&e.Name))
 	return fmt.Sprintf("ID:%s-Name:%s-Age:%d", e.Id, e.Name, e.Age)
 }
 
 //通常情况下为了避免内存拷贝我们使用第二种定义方式
 func (e *Employee) String2() string {
-	fmt.Printf("Address is %x", unsafe.Pointer(&e.Name))
+	fmt.Printf("Address is %x\n", unsafe.Pointer(&e.Name))
 	return fmt.Sprintf("ID:%s-Name:%s-Age:%d", e.Id, e.Name, e.Age)
 }
 
 func TestStructOperations(t *testing.T) {
 	e := Employee{"0", "Bob", 25}
-	fmt.Printf("Address is %x", unsafe.Pointer(&e.Name))
+	fmt.Printf("Address is %x\n", unsafe.Pointer(&e.Name))
 	t.Log(e.String1())
-	//t.Log(e.String2())
+	t.Log(e.String2())
 }
